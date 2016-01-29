@@ -33,6 +33,7 @@ import java.util.Date;
 public class DisplayDetails extends AppCompatActivity{
     private static final String FILENAME = "file.sav";
     final Fuelings Fueling = new Fuelings();
+    private EditText dateIn;
     private EditText stationIn;
     private EditText odReadIn;
     private EditText gradeIn;
@@ -48,6 +49,7 @@ public class DisplayDetails extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        dateIn = (EditText) findViewById(R.id.Date);
         stationIn = (EditText) findViewById(R.id.Station);
         odReadIn = (EditText) findViewById(R.id.OdRead);
         gradeIn = (EditText) findViewById(R.id.Grade);
@@ -55,6 +57,7 @@ public class DisplayDetails extends AppCompatActivity{
         unitCostIn = (EditText) findViewById(R.id.UnitCost);
         costIn = (EditText) findViewById(R.id.Cost);
 
+        dateIn.setText("" + Fueling.getDate());
         stationIn.setText(Fueling.getStation());
         odReadIn.setText("" + Fueling.getOdread());
         gradeIn.setText(Fueling.getGrade());
@@ -84,7 +87,7 @@ public class DisplayDetails extends AppCompatActivity{
                 Fueling.setUnitcost(unitCost);
                 Fueling.setCost(cost);
 
-                log.add(Fueling);
+                Log.addFueling(Fueling);
                 //intent.putExtra(EXTRA_MESSAGE, message);
                 //startActivity(intent);
                 Snackbar.make(view, "Fueling saved!", Snackbar.LENGTH_LONG)
@@ -101,7 +104,7 @@ public class DisplayDetails extends AppCompatActivity{
         super.onStart();
         adapter = new ArrayAdapter<Fuelings>(this,
                 R.layout.content_fuel_entry, log);
-        oldFuelList.setAdapter(adapter);
+        Log.getInstance().getOldFuelList().setAdapter(adapter);
     }
 
     private void loadFromFile() {
