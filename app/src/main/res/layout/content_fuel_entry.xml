@@ -27,7 +27,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Station"
-        android:hint="Station"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/Date"
         android:layout_alignParentLeft="true" />

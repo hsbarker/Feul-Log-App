@@ -14,14 +14,14 @@ public class Fuelings {
     public Double unitcost = 0.0;
     public Double cost = 0.0;
 
-    public Fuelings (){
-        this.station = station;
-        this.odread = odread;
-        this.grade = grade;
-        this.amount = amount;
-        this.unitcost = unitcost;
-        this.cost = cost;
-    }
+//    public Fuelings (){
+//        this.station = station;
+//        this.odread = odread;
+//        this.grade = grade;
+//        this.amount = amount;
+//        this.unitcost = unitcost;
+//        this.cost = cost;
+//    }
 
     public Date getDate()
     {return date;}

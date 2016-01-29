@@ -36,6 +36,7 @@ public class FuelLog extends AppCompatActivity {
 
     private ArrayList<Fuelings> log = new ArrayList<Fuelings>();
     private ArrayAdapter<Fuelings> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
