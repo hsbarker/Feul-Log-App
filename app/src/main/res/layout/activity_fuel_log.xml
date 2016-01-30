@@ -9,13 +9,12 @@
     <ListView
         android:id="@+id/oldFuelList"
         android:layout_width="fill_parent"
-        android:layout_height="263dp"
+        android:layout_height="500dp"
         android:layout_weight="1"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:layout_gravity="bottom|center">
 
     </ListView>
-
-    <include layout="@layout/content_fuel_log" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/Create"
@@ -24,5 +23,14 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
+
+    <TextView
+        android:id="@+id/Total"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="top|center"
+        android:textSize="60sp"
+        android:textAlignment="center"
+        android:background="#7e89f4" />
 
 </android.support.design.widget.CoordinatorLayout>

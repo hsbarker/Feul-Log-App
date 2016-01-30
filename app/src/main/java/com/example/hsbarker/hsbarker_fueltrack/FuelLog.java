@@ -10,9 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.google.gson.Gson;
@@ -33,15 +35,19 @@ import java.util.ArrayList;
 public class FuelLog extends AppCompatActivity {
     private static final String FILENAME = "file.sav";
     private ListView oldFuelList;
+    private TextView Total;
 
     private ArrayList<Fuelings> log = new ArrayList<Fuelings>();
-    private ArrayAdapter<Fuelings> adapter;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadFromFile();
         setContentView(R.layout.activity_fuel_log);
         oldFuelList = (ListView) findViewById(R.id.oldFuelList);
+        Total = (TextView) findViewById(R.id.Total);
+        Total.setText("$" + Log.getInstance().getTotal());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.Create);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +56,13 @@ public class FuelLog extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, DisplayDetails.class);
                 startActivity(intent);
+            }
+        });
+
+        oldFuelList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object listItem = oldFuelList.getItemAtPosition(position);
             }
         });
     }
@@ -80,14 +93,13 @@ public class FuelLog extends AppCompatActivity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        //String[] tweets = loadFromFile();
-        adapter = new ArrayAdapter<Fuelings>(this,
-                R.layout.content_fuel_log, log);
+        loadFromFile();
+        adapter = new ArrayAdapter<String>(this,
+                R.layout.content_fuel_log, Log.getInstance().getOldFuelLog());
         oldFuelList.setAdapter(adapter);
     }
 
     private void loadFromFile() {
-        //ArrayList<String> tweets = new ArrayList<String>();
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -95,36 +107,14 @@ public class FuelLog extends AppCompatActivity {
             //https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html Jan-21 2016
             Type listType = new TypeToken<ArrayList<Fuelings>>() {}.getType();
             log = gson.fromJson(in, listType);
-//			String line = in.readLine();
-//			while (line != null) {
-//				tweets.add(line);
-//				line = in.readLine();
+            Log.getInstance().addOldFuelList(log);
+            Log.getInstance().addOldFuelLog();
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             log = new ArrayList<Fuelings>();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
-        }
-//		return tweets.toArray(new String[tweets.size()]);
-    }
-
-    private void saveInFile() {
-        try {
-            FileOutputStream fos = openFileOutput(FILENAME,
-                    Context.MODE_PRIVATE);
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-            Gson gson = new Gson();
-            gson.toJson(log, out);
-            out.flush();
-//			fos.write(new String(date.toString() + " | " + text)
-//					.getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
+            Log.getInstance().addOldFuelList(log);
+            Log.getInstance().addOldFuelLog();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             throw new RuntimeException();

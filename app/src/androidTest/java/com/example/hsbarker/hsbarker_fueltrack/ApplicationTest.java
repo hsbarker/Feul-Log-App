@@ -10,4 +10,13 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public ApplicationTest() {
         super(Application.class);
     }
+
+    public void testaddOldFuelLog(){
+        Fuelings Fueling = new Fuelings();
+        Log.getInstance().add(Fueling);
+        Log.getInstance().addOldFuelLog();
+        assertEquals(1, Log.getInstance().count());
+        assertEquals(Fueling.str(),Log.getInstance().getOldFuelLog().get(0));
+    }
+
 }

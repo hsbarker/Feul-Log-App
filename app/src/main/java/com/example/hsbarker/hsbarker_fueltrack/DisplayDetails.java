@@ -32,6 +32,9 @@ import java.util.Date;
  */
 public class DisplayDetails extends AppCompatActivity{
     private static final String FILENAME = "file.sav";
+
+    private ArrayList<Fuelings> log = new ArrayList<Fuelings>();
+
     final Fuelings Fueling = new Fuelings();
     private EditText dateIn;
     private EditText stationIn;
@@ -78,18 +81,16 @@ public class DisplayDetails extends AppCompatActivity{
                 String grade = gradeIn.getText().toString();
                 Double amount = Double.parseDouble(amountIn.getText().toString());
                 Double unitCost = Double.parseDouble(unitCostIn.getText().toString());
-                Double cost = Double.parseDouble(costIn.getText().toString());
 
                 Fueling.setStation(station);
                 Fueling.setOdread(odRead);
                 Fueling.setGrade(grade);
                 Fueling.setAmount(amount);
                 Fueling.setUnitcost(unitCost);
-                Fueling.setCost(cost);
+                Fueling.setCost();
+                Log.getInstance().add(Fueling);
+                saveInFile();
 
-                Log.addFueling(Fueling);
-                //intent.putExtra(EXTRA_MESSAGE, message);
-                //startActivity(intent);
                 Snackbar.make(view, "Fueling saved!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .show();
@@ -102,13 +103,9 @@ public class DisplayDetails extends AppCompatActivity{
     protected void onStart() {
         //TODO Auto-generated method stub
         super.onStart();
-        adapter = new ArrayAdapter<Fuelings>(this,
-                R.layout.content_fuel_entry, log);
-        Log.getInstance().getOldFuelList().setAdapter(adapter);
     }
 
     private void loadFromFile() {
-//        //ArrayList<String> tweets = new ArrayList<String>();
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -116,39 +113,35 @@ public class DisplayDetails extends AppCompatActivity{
             //https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html Jan-21 2016
             Type listType = new TypeToken<ArrayList<Fuelings>>() {}.getType();
             log = gson.fromJson(in, listType);
-////			String line = in.readLine();
-////			while (line != null) {
-////				tweets.add(line);
-////				line = in.readLine();
+            Log.getInstance().addOldFuelList(log);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             log = new ArrayList<Fuelings>();
+            Log.getInstance().addOldFuelList(log);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             throw new RuntimeException();
         }
-////		return tweets.toArray(new String[tweets.size()]);
+
     }
-//
-//    private void saveInFile() {
-//        try {
-//            FileOutputStream fos = openFileOutput(FILENAME,
-//                    Context.MODE_PRIVATE);
-//
-//            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-//            Gson gson = new Gson();
-//            gson.toJson(log, out);
-//            out.flush();
-////			fos.write(new String(date.toString() + " | " + text)
-////					.getBytes());
-//            fos.close();
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            throw new RuntimeException();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            throw new RuntimeException();
-//        }
-//    }
+
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME,
+                    Context.MODE_PRIVATE);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            Gson gson = new Gson();
+            gson.toJson(Log.getInstance().getOldFuelList(), out);
+            out.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
+    }
 }
