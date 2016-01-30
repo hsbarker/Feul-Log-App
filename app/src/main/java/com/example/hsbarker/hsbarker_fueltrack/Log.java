@@ -11,6 +11,8 @@ import java.util.List;
 
 //Basic singleton idea came from here http://stackoverflow.com/questions/10976212/arraylist-as-global-variable.
 //However, many of the functions were created by me.
+//There is no clear button because I felt that this was supposed to be a log for corporate use.
+//Employees enter the fuelings they do in order for the corporation to check costs.
 public class Log {
     private static Log instance = new Log();
 
