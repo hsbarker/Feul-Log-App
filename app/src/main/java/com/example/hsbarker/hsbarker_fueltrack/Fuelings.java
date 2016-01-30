@@ -7,8 +7,10 @@ import java.util.Date;
 /**
  * Created by hsbarker on 1/28/16.
  */
+//This is what the user is entering as an entry.
+//Default values are provided in case the user forgets to enter a value.
 public class Fuelings {
-    public Date date = new Date(System.currentTimeMillis());
+    public String date = "0000-00-00";
     public String station = "";
     public Double odread = 0.0;
     public String grade = "";
@@ -18,6 +20,7 @@ public class Fuelings {
 
 
     //http://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
+    //To round all the doubles to their correct length.
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -25,7 +28,8 @@ public class Fuelings {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
     return bd.doubleValue();}
 
-    public Date getDate()
+    //Simple getters and setters for each field in fuelings.
+    public String getDate()
     {return date;}
 
     public String getStation()
@@ -46,7 +50,7 @@ public class Fuelings {
     public Double getCost()
     {return cost;}
 
-    public void setDate(Date date)
+    public void setDate(String date)
     {this.date = date;}
 
     public void setStation(String station)
@@ -64,11 +68,13 @@ public class Fuelings {
     public void setUnitcost(Double unitcost)
     {this.unitcost = round(unitcost,1);}
 
+    //To calculate the cost for the user.
     public void setCost()
     {
         double price = unitcost/100;
         this.cost = round(price * amount,2);}
 
+    //To turn fuelings into strings so that they may be displayed in the list view properly.
     public String str(){
         String entry = "Date : " + this.getDate() + "\n Station : " + this.getStation() + "\n Odometer Reading(KM) : " + this.getOdread() + "\n Grade : " + this.getGrade() + "\n Litres : " + this.getAmount() + "\n Cents/Litres : " + this.getUnitcost() + "\n Cost($) : " + this.getCost();
         return entry;

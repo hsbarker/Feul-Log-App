@@ -22,13 +22,14 @@
         android:layout_alignParentLeft="true"
         android:text="Date (yyyy-mm-dd):" />
 
-    <EditText
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:inputType="date"
         android:id="@+id/Date"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/textstation"/>
+        android:layout_above="@+id/textstation"
+        android:textIsSelectable="false" />
 
     <TextView
         android:layout_width="wrap_content"

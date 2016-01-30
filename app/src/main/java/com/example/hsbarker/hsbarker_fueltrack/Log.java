@@ -8,9 +8,13 @@ import java.util.List;
 /**
  * Created by Hayden on 16-01-29.
  */
+
+//Basic singleton idea came from here http://stackoverflow.com/questions/10976212/arraylist-as-global-variable.
+//However, many of the functions were created by me.
 public class Log {
     private static Log instance = new Log();
 
+    //Create a list to store the fuelings for editing and a list to store the output information for FuelLog.
     private List<Fuelings> oldFuelList = new ArrayList<Fuelings>();
     private List<String> oldFuelLog = new ArrayList<>();
 
@@ -25,19 +29,24 @@ public class Log {
     private Log() {
     }
 
+
     public void add(Fuelings Fueling){
         oldFuelList.add(Fueling);
     }
 
+    //Add a new entry from the user.
     public Fuelings getFueling(int id){
         return oldFuelList.get(id);
     }
 
+    //For saving the entries.
     public List<Fuelings> getOldFuelList(){
         return oldFuelList;
     }
 
+    //To populate the editable list when the data is loaded.
     public void addOldFuelList(ArrayList<Fuelings> log) {
+        //Always empty to avoid double population.
         oldFuelList.clear();
         oldFuelLog.clear();
         for (int i = 0; i < log.size(); i++){
@@ -45,7 +54,9 @@ public class Log {
         }
     }
 
+    //To populate the FuelLog view list.
     public void addOldFuelLog(){
+        //Always empty to avoid double population.
         oldFuelLog.clear();
         for (int i = 0; i < oldFuelList.size(); i++){
             Fuelings Fueling = oldFuelList.get(i);
@@ -54,14 +65,17 @@ public class Log {
         }
     }
 
+    //To provide the data for the FuelLog view.
     public List<String> getOldFuelLog(){
         return oldFuelLog;
     }
 
+    //To check the size of oldFuelLog.
     public int count(){
         return oldFuelLog.size();
     }
 
+    //To show the total of the costs.
     public double getTotal(){
         double Total = 0.0;
         for (int i = 0; i < oldFuelList.size(); i++){
@@ -72,6 +86,7 @@ public class Log {
     }
 
     //http://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
+    //To round the cost to 2 decimal places.
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 

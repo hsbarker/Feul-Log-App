@@ -31,14 +31,17 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-
+//This is the inital class called when the app is opened.
 public class FuelLog extends AppCompatActivity {
+
+    //To load data to the list view.
     private static final String FILENAME = "file.sav";
     private ListView oldFuelList;
-    private TextView Total;
-
     private ArrayList<Fuelings> log = new ArrayList<Fuelings>();
     private ArrayAdapter<String> adapter;
+
+    //To show total amount of costs.
+    private TextView Total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,11 @@ public class FuelLog extends AppCompatActivity {
         setContentView(R.layout.activity_fuel_log);
         oldFuelList = (ListView) findViewById(R.id.oldFuelList);
         Total = (TextView) findViewById(R.id.Total);
+
+        //Show the user the total amount of costs.
         Total.setText("$" + Log.getInstance().getTotal());
 
+        //Button to allow user to add a new record.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.Create);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,11 +66,11 @@ public class FuelLog extends AppCompatActivity {
         });
 
         //http://stackoverflow.com/questions/27173535/android-listview-item-edit-operation
+        //Allow user to tap individual records and edit them.
         oldFuelList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // use position to find your values
-                // to go to ShowDetailsActivity, you have to use Intent
                 Intent detailScreen = new Intent(getApplicationContext(), DisplayDetails.class);
                 detailScreen.putExtra("position", position); // pass value if needed
                 startActivity(detailScreen);
@@ -94,6 +100,7 @@ public class FuelLog extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Generate the list of stored fuelings for the user.
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
@@ -104,6 +111,7 @@ public class FuelLog extends AppCompatActivity {
         oldFuelList.setAdapter(adapter);
     }
 
+    //Load the saved data.
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -111,6 +119,9 @@ public class FuelLog extends AppCompatActivity {
             Gson gson = new Gson();
             //https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html Jan-21 2016
             Type listType = new TypeToken<ArrayList<Fuelings>>() {}.getType();
+
+            //Load the data into a basic array and then replicate it in a singleton for global use.
+            //Create the list view by populating the oldFuelLog with the loaded data.
             log = gson.fromJson(in, listType);
             Log.getInstance().addOldFuelList(log);
             Log.getInstance().addOldFuelLog();
