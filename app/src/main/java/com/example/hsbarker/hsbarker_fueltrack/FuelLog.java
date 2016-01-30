@@ -59,10 +59,15 @@ public class FuelLog extends AppCompatActivity {
             }
         });
 
+        //http://stackoverflow.com/questions/27173535/android-listview-item-edit-operation
         oldFuelList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object listItem = oldFuelList.getItemAtPosition(position);
+                // use position to find your values
+                // to go to ShowDetailsActivity, you have to use Intent
+                Intent detailScreen = new Intent(getApplicationContext(), DisplayDetails.class);
+                detailScreen.putExtra("position", position); // pass value if needed
+                startActivity(detailScreen);
             }
         });
     }

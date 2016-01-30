@@ -13,70 +13,128 @@
     tools:showIn="@layout/activity_fuel_entry"
     android:id="@+id/content">
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/Date"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="61dp" />
+        android:layout_above="@+id/Date"
+        android:id="@+id/textdate"
+        android:layout_alignParentLeft="true"
+        android:text="Date (yyyy-mm-dd):" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:inputType="date"
+        android:id="@+id/Date"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textstation"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/Station"
+        android:id="@+id/textstation"
+        android:layout_alignParentLeft="true"
+        android:text="Station:" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Station"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/Date"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textodread"
         android:layout_alignParentLeft="true" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/OdRead"
+        android:id="@+id/textodread"
+        android:layout_alignParentLeft="true"
+        android:text="Odometer Reading(KM):" />
+
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/OdRead"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/Station"
+        android:layout_above="@+id/textgrade"
         android:layout_alignParentLeft="true" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/Grade"
+        android:id="@+id/textgrade"
+        android:layout_alignParentLeft="true"
+        android:text="Fuel Grade:" />
+
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Grade"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/OdRead"
+        android:layout_above="@+id/textamount"
         android:layout_alignParentLeft="true" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/Amount"
+        android:id="@+id/textamount"
+        android:layout_alignParentLeft="true"
+        android:text="Litres:" />
+
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/Amount"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/Grade"
+        android:layout_above="@+id/textunitcost"
         android:layout_alignParentLeft="true" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/UnitCost"
+        android:id="@+id/textunitcost"
+        android:layout_alignParentLeft="true"
+        android:text="Cents/Litre:" />
+
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/UnitCost"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/Amount"
-        android:layout_alignParentLeft="true" />
+        android:layout_above="@+id/textcost"
+        android:layout_centerHorizontal="true" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/Cost"
+        android:id="@+id/textcost"
+        android:layout_alignParentLeft="true"
+        android:text="Cost($):" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/Cost"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/UnitCost"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

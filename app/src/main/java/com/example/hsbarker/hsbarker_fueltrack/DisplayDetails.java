@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.google.gson.Gson;
@@ -32,21 +33,33 @@ import java.util.Date;
  */
 public class DisplayDetails extends AppCompatActivity{
     private static final String FILENAME = "file.sav";
-
     private ArrayList<Fuelings> log = new ArrayList<Fuelings>();
 
-    final Fuelings Fueling = new Fuelings();
+
+
+    Fuelings Fueling = new Fuelings();
     private EditText dateIn;
     private EditText stationIn;
     private EditText odReadIn;
     private EditText gradeIn;
     private EditText amountIn;
     private EditText unitCostIn;
-    private EditText costIn;
+    private TextView costIn;
+    private Boolean New;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i = getIntent();
+        int position = i.getIntExtra("position", -1);
+        if (position == -1){
+            New = Boolean.TRUE;
+        }
+        else {
+            Fueling = Log.getInstance().getFueling(position);
+            New = Boolean.FALSE;
+        }
+
         setContentView(R.layout.activity_fuel_entry);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,7 +71,7 @@ public class DisplayDetails extends AppCompatActivity{
         gradeIn = (EditText) findViewById(R.id.Grade);
         amountIn = (EditText) findViewById(R.id.Amount);
         unitCostIn = (EditText) findViewById(R.id.UnitCost);
-        costIn = (EditText) findViewById(R.id.Cost);
+        costIn = (TextView) findViewById(R.id.Cost);
 
         dateIn.setText("" + Fueling.getDate());
         stationIn.setText(Fueling.getStation());
@@ -88,7 +101,12 @@ public class DisplayDetails extends AppCompatActivity{
                 Fueling.setAmount(amount);
                 Fueling.setUnitcost(unitCost);
                 Fueling.setCost();
-                Log.getInstance().add(Fueling);
+                if (New){
+                    Log.getInstance().add(Fueling);
+                }
+                else {
+                    ;
+                }
                 saveInFile();
 
                 Snackbar.make(view, "Fueling saved!", Snackbar.LENGTH_LONG)
