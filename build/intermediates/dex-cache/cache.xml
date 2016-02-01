@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.5/686c608d1805b6d4d425ec4459e88164ffc85870/gson-2.5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="686c608d1805b6d4d425ec4459e88164ffc85870">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/gson-2.5_97b9681447808dc9f2ca8aaacaf432e6ff9747be.jar" />
+    </item>
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_a0272b5aa6ea027abf705a426edbdcbd842339e3.jar" />
+    </item>
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_ed1798618e160cf4f3d8f43a9801d0f5afdc1691.jar" />
+    </item>
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_97d6e269131f19b6fdb02ea6fa6bca17e4a21b6a.jar" />
+    </item>
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_65b359f591468fdafa861898c30f43c237203656.jar" />
+    </item>
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_39df863b5a1ef4a585d0d72bd902b53892cf232d.jar" />
+    </item>
+    <item
+        jar="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/afs/ualberta.ca/home/h/s/hsbarker/as1/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_a000a0217a8a21c6f238a8e796270e83279246f2.jar" />
+    </item>
+
+</items>
