@@ -88,7 +88,7 @@ public class Log {
     }
 
     //http://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
-    //To round the cost to 2 decimal places.
+    //To round the cost to specified decimal places.
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
